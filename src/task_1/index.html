@@ -1,0 +1,37 @@
+<!--
+	Задача 1
+	Написать заголовочный файл (файл тайпинга) к файлу index.html, в котором есть JavaScript скрипт
+	Результатом задания должны быть два файла:
+		1) Файл typing.d.ts, в котором прописаны типы для этого JavaScript кода.
+		2) Файл app.ts, в котором используются типы из файла typing.d.ts
+-->
+
+<!DOCTYPE html>
+<html lang="ru">
+ 
+<head>
+    <meta charset="utf-8">
+    <title>Заголовок</title>
+</head>
+ 
+<body>
+    <script>
+        var Custom;
+        (function (Custom) {
+            var User = /** @class */ (function () {
+                function User(a, n) {
+                    this.age = a;
+                    this.name = n;
+                }
+                User.prototype.upAgeByYear = function () {
+                    this.age++;
+                };
+                return User;
+            }());
+            Custom.user = new User(18, "Михаил");
+        })(Custom || (Custom = {}));
+        Custom.user.upAgeByYear();
+    </script>
+</body>
+ 
+</html>
