@@ -2,43 +2,47 @@
  * Ниже приведён код, перепишите его, используя async/await вместо .then/.catch
 */
 
+interface IUser {
+    name: string;
+    id: number;
+}
 
 class HttpError extends Error {
-	constructor(response) {
-		super(`${response.status} for ${response.url}`);
-		this.name = 'HttpError';
-		this.response = response;
-	}
-}
-  
-function loadJson(url) {
-	return fetch(url)
-		.then(response => {
-			if (response.status == 200) {
-				return response.json();
-			} else {
-				throw new HttpError(response);
-			}
-		})
-}
-  
-// Запрашивать логин, пока github не вернёт существующего пользователя.
-function demoGithubUser() {
-	let name = prompt("Введите логин?", "iliakan");
+    public response: Response;
 
-	return loadJson(`https://api.github.com/users/${name}`)
-		.then(user => {
-			alert(`Полное имя: ${user.name}.`);
-			return user;
-		})
-		.catch(err => {
-			if (err instanceof HttpError && err.response.status == 404) {
-				alert("Такого пользователя не существует, пожалуйста, повторите ввод.");
-				return demoGithubUser();
-			} else {
-				throw err;
-			}
-		});
+    constructor(response) {
+        super(`${response.status} for ${response.url}`);
+        this.response = response;
+    }
 }
-  
-demoGithubUser();  
+
+function req(url: string): Promise<IUser> {
+    return fetch(url)
+        .then(response => {
+            if (response.status == 200) {
+                return response.json();
+            } else {
+                throw new HttpError(response);
+            }
+        })
+}
+
+// Запрашивать логин, пока github не вернёт существующего пользователя.
+function getGitHub() {
+    let name = prompt("Введите логин?", "m-abrosimov");
+
+    return req(`https://api.github.com/users/${name}`)
+        .then(user => {
+            document.write(`Полное имя: ${user.name}, уникальный номер: ${user.id}.`);
+            return user;
+        })
+        .catch(err => {
+            if (err instanceof HttpError && err.response.status == 404) {
+                document.write("Такого пользователя не существует.");
+            } else {
+                throw err;
+            }
+        });
+}
+
+getGitHub();
