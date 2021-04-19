@@ -29,7 +29,7 @@ function req(url: string): Promise<IUser> {
 
 // Запрашивать логин, пока github не вернёт существующего пользователя.
 function getGitHub() {
-    let name = prompt("Введите логин?", "m-abrosimov");
+    let name = prompt("Введите логин на GitHub?", "");
 
     return req(`https://api.github.com/users/${name}`)
         .then(user => {
