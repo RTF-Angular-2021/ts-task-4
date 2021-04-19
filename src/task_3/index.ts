@@ -10,7 +10,7 @@ interface IUser {
 class HttpError extends Error {
     public response: Response;
 
-    constructor(response) {
+    constructor(response: Response) {
         super(`${response.status} for ${response.url}`);
         this.response = response;
     }
