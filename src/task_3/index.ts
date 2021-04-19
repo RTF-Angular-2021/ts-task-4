@@ -18,7 +18,7 @@ class HttpError extends Error {
 
 function req(url: string): Promise<IUser> {
     return fetch(url)
-        .then(response => {
+        .then((response: Response) => {
             if (response.status == 200) {
                 return response.json();
             } else {
