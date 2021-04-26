@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "module": "AMD",
+    "target": "es5",
+    "outDir": "dist"
+    },
+    "include": [
+    "src/**/*"]
+}
