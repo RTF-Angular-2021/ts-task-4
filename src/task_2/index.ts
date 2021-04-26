@@ -6,7 +6,8 @@
  * 	  все остальные файлы должны подгрузиться асинхронно по цепочке, используя requireJS.
 */
 
-class SettingValue {
+/**
+ * class SettingValue {
     public property1: string;
     public property2: string;
  
@@ -36,3 +37,5 @@ class Example {
         this._setting = s;
     }
 }
+ */
+

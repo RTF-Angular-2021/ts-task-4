@@ -16,7 +16,7 @@ class HttpError extends Error {
     }
 }
 
-function req(url: string): Promise<IUser> {
+ function req(url: string): Promise<IUser> {
     return fetch(url)
         .then((response: Response) => {
             if (response.status == 200) {
@@ -28,7 +28,7 @@ function req(url: string): Promise<IUser> {
 }
 
 // Запрашивать логин, пока github не вернёт существующего пользователя.
-function getGitHub() {
+ function getGitHub() {
     let name = prompt("Введите логин на GitHub?", "");
 
     return req(`https://api.github.com/users/${name}`)
