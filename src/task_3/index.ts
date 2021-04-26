@@ -28,10 +28,10 @@ function req(url: string): Promise<IUser> {
 }
 
 // Запрашивать логин, пока github не вернёт существующего пользователя.
-function getGitHub() {
+async function getGitHub() {
     let name = prompt("Введите логин на GitHub?", "");
 
-    return req(`https://api.github.com/users/${name}`)
+    return await req(`https://api.github.com/users/${name}`)
         .then(user => {
             document.write(`Полное имя: ${user.name}, уникальный номер: ${user.id}.`);
             return user;
