@@ -16,33 +16,30 @@ class HttpError extends Error {
     }
 }
 
-function req(url: string): Promise<IUser> {
-    return fetch(url)
-        .then((response: Response) => {
-            if (response.status == 200) {
-                return response.json();
-            } else {
-                throw new HttpError(response);
-            }
-        })
+async function req(url: string): Promise<IUser> {
+    const response: Response = await fetch(url);
+    if (response.status == 200) {
+        return response.json();
+    } else {
+        throw new HttpError(response);
+    }
 }
 
 // Запрашивать логин, пока github не вернёт существующего пользователя.
-function getGitHub() {
+async function getGitHub() {
     let name = prompt("Введите логин на GitHub?", "");
-
-    return req(`https://api.github.com/users/${name}`)
-        .then(user => {
-            document.write(`Полное имя: ${user.name}, уникальный номер: ${user.id}.`);
-            return user;
-        })
-        .catch(err => {
-            if (err instanceof HttpError && err.response.status == 404) {
-                document.write("Такого пользователя не существует.");
-            } else {
-                throw err;
-            }
-        });
+    let user;
+    try {
+        user = await req(`https://api.github.com/users/${name}`);
+        document.write(`Полное имя: ${user.name}, уникальный номер: ${user.id}.`);
+        return user;
+    } catch(err) {
+        if (err instanceof HttpError && err.response.status == 404) {
+            document.write("Такого пользователя не существует.");
+        } else {
+            throw err;
+        }
+    }
 }
 
 getGitHub();

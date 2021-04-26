@@ -1,24 +1,39 @@
 {
-  "name": "ts-task-1",
+  "name": "example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clear": "rimraf ./dist",
+    "compy-index-html": "copyfiles -f ./src/index.html ./dist",
+    "build": "npm run clear && npm run compy-index-html && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc src/**/*.ts"
+    "start": "nodemon Server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RTF-Angular-2021/ts-task-1.git"
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts"
+    }
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RTF-Angular-2021/ts-task-1/issues"
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "reflect-metadata": "^0.1.13",
+    "requirejs": "^2.3.6",
+    "typescript": "^4.1.5"
   },
-  "homepage": "https://github.com/RTF-Angular-2021/ts-task-1#readme",
   "dependencies": {
-    "tsc": "^1.20150623.0"
-  },
-  "devDependencies": {}
+    "btoa-atob": "^0.1.2",
+    "cross-blob": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.3",
+    "node-fetch": "^2.6.1",
+    "npm-watch": "^0.7.0",
+    "request": "^2.88.2",
+    "rimraf": "^3.0.2"
+  }
 }

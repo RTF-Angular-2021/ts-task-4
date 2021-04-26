@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "traceResolution": false,
+      "experimentalDecorators": true,
+      "noImplicitAny": false,
+      "noEmitOnError": true,
+      "removeComments": false,
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "module": "amd",
+      "target": "ES6",
+      "outDir": "dist"
+    },
+    "include": [
+      "src/**/*"]
+  }

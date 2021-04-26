@@ -4,3 +4,4 @@
  * Не забывайте, что пригодится аутентификация и ключ:
  * https://docs.github.com/en/developers/apps/authenticating-with-github-apps#authenticating-as-an-installation
 */
+//# sourceMappingURL=index.js.map
