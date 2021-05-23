@@ -1,2 +1,5 @@
-let user = new User(20, 'Max');
-user.upAgeByYear();
+namespace Custom {
+    let user = new User(5, 'Max');
+    user.upAgeByYear();
+    console.log(user);
+}
